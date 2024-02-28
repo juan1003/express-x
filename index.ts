@@ -1,6 +1,7 @@
 import express from "express";
 import morgan from "morgan";
 import path from "path";
+import pug from "pug";
 
 const app = express();
 
@@ -18,7 +19,13 @@ app.get("/", (req: express.Request, res: express.Response, next: any) => {
 });
 
 app.post("/clicked", (req: express.Request, res: express.Response, next: any) => {
-    res.send(`button (class={ "text-sm uppercase font-bold text-green-400 border border-green-300 px-3 py-1 rounded hover:bg-green-300 hover:text-black" : true }) You clicked me!`);
+    const pugButton = 
+    `button.text-sm.uppercase.font-bold.text-green-400.border.border-green-300.px-3.py-1.rounded(class={'hover:bg-green-300 hover:text-black': true}) You clicked me!`;
+
+    const buttonHtml = pug.render(pugButton);
+
+    res.setHeader("Content-Type", "text/html");
+    res.send(buttonHtml);
 });
 
 app.listen(3000);
