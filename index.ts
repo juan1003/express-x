@@ -4,13 +4,17 @@ import path from "path";
 
 const app = express();
 
+// Set the view engine to Pug
+app.set('view engine', 'pug');
+app.set('views', path.join(__dirname, 'views'));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 app.use(morgan("combined"));
 
 app.get("/", (req: express.Request, res: express.Response, next: any) => {
-    res.sendFile(path.join(__dirname, "/index.html"));
+    res.render('index')
 });
 
 app.post("/clicked", (req: express.Request, res: express.Response, next: any) => {
