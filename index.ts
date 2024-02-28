@@ -18,7 +18,7 @@ app.get("/", (req: express.Request, res: express.Response, next: any) => {
 });
 
 app.post("/clicked", (req: express.Request, res: express.Response, next: any) => {
-    res.send(`<button class="text-sm uppercase font-bold text-green-400 border border-green-300 px-3 py-1 rounded hover:bg-green-300 hover:text-black">You clicked me!</button>`);
+    res.send(`button (class={ "text-sm uppercase font-bold text-green-400 border border-green-300 px-3 py-1 rounded hover:bg-green-300 hover:text-black" : true }) You clicked me!`);
 });
 
 app.listen(3000);
